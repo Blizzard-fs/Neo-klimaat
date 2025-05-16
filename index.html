@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="nl"> <head>
+<html lang="nl">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hoe los jij het klimaatprobleem op?</title>
+    <title>Hoe los jij het klimaatprobleem op? - CO2 Bubble</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,16 +12,15 @@
 <body>
     <main id="climate-solver-app" class="climate-solver">
         <header class="climate-solver__header">
-            <h2 class="">Hoe los jij het klimaatprobleem op?</h2>
+            <h2>Hoe los jij het klimaatprobleem op?</h2>
         </header>
 
         <section class="progress-indicator">
             <h3 id="progress-indicator-title" class="visually-hidden">Voortgang CO2 Reductie</h3>
             <div class="progress-indicator__rings-container">
-                <svg id="goal-rings-svg" class="progress-indicator__target-rings-svg" aria-hidden="true">
-                    </svg>
-                <div class="progress-indicator__co2-ball" role="status" aria-live="polite">
-                    <span class="progress-indicator__co2-ball-text">0 Megaton CO₂</span>
+                <svg id="goal-rings-svg" class="progress-indicator__target-rings-svg" aria-hidden="true"></svg>
+                <div id="co2-indicator" class="progress-indicator__co2-indicator" role="status" aria-live="polite">
+                    <span id="co2-indicator-text" class="progress-indicator__co2-indicator-text">0 Megaton CO₂</span>
                 </div>
             </div>
             <div id="total-saved-label" class="progress-indicator__total-saved-label">
@@ -31,12 +31,10 @@
         <section class="measures-display" aria-labelledby="measures-display-title">
             <h3 id="measures-display-title" class="visually-hidden">Selecteerbare maatregelen</h3>
             <div class="measures-display__outer-container">
-                <div id="measures-box" class="measures-display__box">
-                    </div>
+                <div id="measures-box" class="measures-display__box"></div>
                 <nav class="pagination" aria-label="Maatregelen paginering">
                     <button id="prev-slide-button" class="pagination__button pagination__button--prev" aria-label="Vorige pagina maatregelen">&lt;</button>
-                    <div class="pagination__dots-container" role="tablist" aria-label="Pagina indicator">
-                        </div>
+                    <div class="pagination__dots-container" role="tablist" aria-label="Pagina indicator"></div>
                     <button id="next-slide-button" class="pagination__button pagination__button--next" aria-label="Volgende pagina maatregelen">&gt;</button>
                 </nav>
             </div>

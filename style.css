@@ -1,14 +1,36 @@
-/* Climate-choices/style.css (Child-Friendly Custom Version) */
+/* style.css (Option 2: CO2 Bubble) - Updated Colors based on Style Guide */
 :root {
-    --primary-bg-color: #f0f9ff;
-    --container-bg-color: #ffffff;
-    --text-color-dark: #335c67;
-    --text-color-medium: #5e8b7e;
-    --accent-color-1: #ffcb77;
-    --accent-color-2: #f57b51; /* CO2 Ball */
-    --accent-color-3: #99d98c; /* Toggles */
-    --button-bg-color: #a0eade;
-    --button-hover-bg-color: #88d4c4;
+    /* Style Guide Colors */
+    --sg-purple-dark: #7e78b8;
+    --sg-pink: #f06793;
+    --sg-teal-green: #51bf9d;
+    --sg-orange: #fcba63;
+    --sg-sky-blue: #44c8f5;
+    --sg-black: #000000;
+    --sg-white: #ffffff;
+
+    --sg-purple-light: #bab9de;
+    --sg-pink-light: #f4afcf;
+    --sg-teal-green-light: #a4d5c7;
+    --sg-orange-light: #fdd5a4;
+    --sg-sky-blue-light: #a0d8ec;
+
+    /* Applied Theme Colors */
+    --primary-bg-color: var(--sg-sky-blue-light); /* Light and airy background */
+    --container-bg-color: var(--sg-white);
+    --text-color-dark: var(--sg-black);
+    --text-color-medium: var(--sg-purple-dark);
+    
+    --accent-color-1: var(--sg-orange);         /* Goal ring color */
+    
+    --bubble-color: rgba(81, 191, 157, 0.7);    /* SG Teal Green with alpha for bubble */
+    --bubble-border-color: var(--sg-teal-green);/* Solid SG Teal Green for border */
+    --bubble-text-color: var(--sg-white);
+
+    --accent-color-3: var(--sg-teal-green);     /* Toggles active state */
+    --button-bg-color: var(--sg-pink);
+    --button-hover-bg-color: #d95783;           /* Darker shade of SG Pink for hover */
+
     --border-radius-main: 15px;
     --border-radius-small: 10px;
     --box-shadow-soft: 0 6px 12px rgba(0, 0, 0, 0.1);
@@ -38,7 +60,6 @@
     font-weight: 700;
     font-style: normal;
 }
-/* ... other space-mono classes if needed ... */
 
 body {
     font-family: var(--default-font);
@@ -70,8 +91,9 @@ body {
 .climate-solver__header h2 {
     margin: 0 0 10px 0;
     font-size: 2.2em;
-    color: var(--text-color-dark);
+    color: var(--button-bg-color);
     font-weight: 700;
+    text-transform: uppercase;
 }
 
 .progress-indicator {
@@ -101,44 +123,53 @@ body {
 }
 .progress-indicator__target-ring {
     fill: none;
-    stroke: var(--accent-color-1);
+    stroke: var(--accent-color-3); /* Uses SG Orange */
     stroke-width: 2.5px;
     stroke-dasharray: 8 8;
     opacity: 0.8;
 }
 .progress-indicator__ring-label {
-    font-size: 11px; /* Adjusted for clarity */
-    fill: var(--text-color-medium);
+    font-size: 11px;
+    fill: var(--text-color-medium); /* Uses SG Purple Dark */
     text-anchor: middle;
     font-weight: 600;
     font-family: var(--default-font);
 }
-.progress-indicator__co2-ball {
+
+/* --- CO2 Bubble Styling --- */
+.progress-indicator__co2-indicator {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: var(--accent-color-2);
-    border-radius: 50%;
+    background-color: var(--bubble-color); /* Uses SG Teal Green with alpha */
+    border: 2px solid var(--bubble-border-color); /* Uses solid SG Teal Green */
+    border-radius: 50%; 
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: #ffffff;
+    color: var(--bubble-text-color); /* Uses SG White */
     transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                height 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    box-shadow: var(--box-shadow-interactive);
+                height 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                background-color 0.6s ease-out;
     z-index: 1;
-    border: 3px solid white;
+    box-shadow: inset 0 0 10px rgba(255,255,255,0.3), 0 2px 5px rgba(0,0,0,0.2); /* Adjusted shine for new bubble color */
+    width: 200px; 
+    height: 200px; 
 }
-.progress-indicator__co2-ball-text {
+
+.progress-indicator__co2-indicator-text {
     font-family: "Space Mono", monospace;
     font-weight: 700;
     padding: 10px;
     line-height: 1.2;
     position: relative;
-    z-index: 10;
+    z-index: 3;
+    text-shadow: 0 0 3px color-mix(in srgb, var(--bubble-border-color) 70%, var(--sg-black)); /* Text shadow related to border color */
 }
+/* --- End CO2 Bubble Styling --- */
+
 .progress-indicator__total-saved-label {
     text-align: center;
     margin-top: 20px;
@@ -147,13 +178,13 @@ body {
     font-weight: 600;
     font-family: var(--default-font);
     padding: 5px 10px;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: color-mix(in srgb, var(--container-bg-color) 80%, transparent); /* Semi-transparent white */
     border-radius: var(--border-radius-small);
     box-shadow: var(--box-shadow-soft);
 }
 
 .measures-display__outer-container {
-    background-color: #fdfdfd;
+    background-color: color-mix(in srgb, var(--primary-bg-color) 70%, var(--sg-white) 30%); /* Lighter shade of primary bg */
     border-radius: var(--border-radius-small);
     padding: 20px;
     margin-top: 20px;
@@ -166,8 +197,8 @@ body {
 .measures-display__box {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Distributes space */
-    gap: 15px; /* Consistent gap */
+    justify-content: space-between; 
+    gap: 15px; 
 }
 
 .measures-display__item {
@@ -176,12 +207,12 @@ body {
     background-color: var(--container-bg-color);
     border-radius: var(--border-radius-small);
     padding: 12px 15px;
-    flex-grow: 1; /* Allow items to grow */
-    box-sizing: border-box; /* Important for flex-basis and padding */
+    flex-grow: 1; 
+    box-sizing: border-box; 
     transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    border: 1px solid #eee;
-    justify-content: space-between; /* Pushes toggle to the right */
+    border: 1px solid color-mix(in srgb, var(--primary-bg-color) 50%, var(--sg-white) 50%); /* Softer border */
+    justify-content: space-between; 
 }
 
 .measures-display__item:hover {
@@ -189,10 +220,10 @@ body {
     box-shadow: var(--box-shadow-interactive);
 }
 .measures-display__name {
-    margin-left: 15px; /* Changed from margin-left to push toggle right */
+    margin-left: 15px; 
     font-size: 1em;
     color: var(--text-color-dark);
-    flex-grow: 1; /* Allows name to take available space */
+    flex-grow: 1; 
     line-height: 1.4;
     font-family: var(--default-font);
     font-weight: 600;
@@ -202,7 +233,7 @@ body {
     display: inline-block;
     width: 52px;
     height: 28px;
-    flex-shrink: 0; /* Prevent toggle from shrinking */
+    flex-shrink: 0; 
 }
 .measures-display__toggle input {
     opacity: 0;
@@ -216,7 +247,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #dcdcdc;
+    background-color: var(--sg-purple-light); /* Off state for toggle - SG Light Purple */
     transition: .3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border-radius: 28px;
 }
@@ -233,10 +264,10 @@ body {
     box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 .measures-display__toggle input:checked + .measures-display__slider {
-    background-color: var(--accent-color-3);
+    background-color: var(--accent-color-3); /* Uses SG Teal Green */
 }
 .measures-display__toggle input:focus-visible + .measures-display__slider {
-    outline: 3px solid var(--accent-color-1);
+    outline: 3px solid var(--sg-sky-blue); /* SG Sky blue for focus */
     outline-offset: 2px;
 }
 .measures-display__toggle input:checked + .measures-display__slider:before {
@@ -251,9 +282,9 @@ body {
     padding: 0 5px;
 }
 .pagination__button {
-    background-color: var(--button-bg-color);
+    background-color: var(--button-bg-color); /* Uses SG Pink */
     border: none;
-    color: var(--text-color-dark);
+    color: var(--sg-white); /* White text on pink button */
     padding: 0;
     border-radius: 50%;
     cursor: pointer;
@@ -269,7 +300,7 @@ body {
     box-shadow: var(--box-shadow-interactive);
 }
 .pagination__button:hover:not(:disabled) {
-    background-color: var(--button-hover-bg-color);
+    background-color: var(--button-hover-bg-color); /* Uses darker SG Pink */
     transform: translateY(-2px);
     box-shadow: 0 6px 10px rgba(0,0,0,0.1);
 }
@@ -278,27 +309,27 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 .pagination__button--disabled,
-.pagination__button:disabled { /* Added :disabled pseudo-class for robustness */
-    background-color: #e0e0e0;
-    color: #aaaaaa;
+.pagination__button:disabled { 
+    background-color: var(--sg-purple-light); /* Using light purple for disabled state */
+    color: var(--sg-purple-dark);
     cursor: not-allowed;
     opacity: 0.7;
     box-shadow: none;
-    transform: none; /* Reset transform for disabled state */
+    transform: none; 
 }
 .pagination__button:focus-visible {
-    outline: 3px solid var(--accent-color-1);
+    outline: 3px solid var(--sg-sky-blue); /* SG Sky Blue for focus */
     outline-offset: 1px;
 }
 .pagination__dots-container {
     display: flex;
     gap: 10px;
-    align-items: center; /* Vertically align dots if their heights vary slightly */
+    align-items: center; 
 }
 .pagination__dot {
     width: 12px;
     height: 12px;
-    background-color: #dcdcdc; /* Slightly different from toggle off-state for variety */
+    background-color: var(--sg-purple-light); /* Uses SG Light Purple for inactive dots */
     border-radius: 50%;
     transition: background-color 0.3s ease, transform 0.2s ease;
     cursor: pointer;
@@ -306,12 +337,12 @@ body {
     padding: 0;
 }
 .pagination__dot:hover {
-    background-color: var(--button-hover-bg-color); /* Consistent hover */
+    background-color: var(--sg-pink-light); /* Light pink for hover */
     transform: scale(1.15);
 }
 .pagination__dot--active,
 .pagination__dot[aria-selected="true"] {
-    background-color: var(--accent-color-2); /* Same as CO2 ball for active dot */
+    background-color: var(--sg-pink); /* Active dot matches button color (SG Pink) */
     transform: scale(1.2);
-    box-shadow: 0 0 0 3px rgba(245, 123, 81, 0.3);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--sg-pink) 50%, transparent);
 }
